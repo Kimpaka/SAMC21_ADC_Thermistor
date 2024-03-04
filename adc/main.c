@@ -10,13 +10,13 @@ uint16_t adc_result;
 //[*]======================================================================================[*]
 float steinhart_hart_equation(float r_th)
 {
-	int		t1,t2,t3;
-	float	r1,r2,r3;
-	float	a1,a2,a3;
-	float	t1k,t2k,t3k;
-	float	c1,c2,c3;
-	float	c1a,c2a,c3a;
-	float x,y,z,w,v,u;
+	int		t1, t2, t3;
+	float	r1, r2, r3;
+	float	a1, a2, a3;
+	float	t1k, t2k, t3k;
+	float	c1, c2, c3;
+	float	c1a, c2a, c3a;
+	float x, y, z, w, v, u;
 	
 	float temp_k;
 	float temp;
@@ -28,17 +28,19 @@ float steinhart_hart_equation(float r_th)
 	
 	a1 = log(r1);		a2 = log(r2);		a3 = log(r3);
 	
-	z = a1-a2;			y = a1-a3;
+	z = a1-a2;
+	y = a1-a3;
 	
-	x = 1/t1k - 1/t2k;	w = 1/t1k - 1/t3k;
+	x = 1/t1k - 1/t2k;
+	w = 1/t1k - 1/t3k;
 	
 	v = pow(a1,3) - pow(a2,3);
 	
 	u = pow(a1,3) - pow(a3,3);
 	
-	c3a = (x-z*w/y)/(v-z*u/y);
-	c2a = (x-c3a*v)/z;
-	c1a = 1/t1k-c3a*pow(a1,3)-c2a*a1;
+	c3a = (x - z * w / y) / (v - z * u / y);
+	c2a = (x - c3a * v) / z;
+	c1a = 1 / t1k - c3a * pow(a1,3) - c2a * a1;
 	
 	c3 = c3a * 10000000;
 	c2 = c2a * 10000;
@@ -46,7 +48,7 @@ float steinhart_hart_equation(float r_th)
 	
 //	1/(c1a+c2a*log(r_th)+c3a*pow(log(r_th),3));	
 	
-	temp_k = 1/(c1a+c2a*log(r_th)+c3a*pow(log(r_th),3));
+	temp_k = 1 / (c1a + c2a * log(r_th) + c3a * pow(log(r_th),3));
 	temp   = temp_k - 273.15;
 	
 	printf("c1 : %f, c2 : %f, c3 : %f\r\n", c1, c2, c3);

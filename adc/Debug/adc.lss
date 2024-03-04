@@ -1490,7 +1490,7 @@ float steinhart_hart_equation(float r_th)
 	
 //	1/(c1a+c2a*log(r_th)+c3a*pow(log(r_th),3));	
 	
-	temp_k = 1/(c1a+c2a*log(r_th)+c3a*pow(log(r_th),3));
+	temp_k = 1 / (c1a + c2a * log(r_th) + c3a * pow(log(r_th),3));
      bc6:	4e20      	ldr	r6, [pc, #128]	; (c48 <steinhart_hart_equation+0x88>)
      bc8:	47b0      	blx	r6
      bca:	4920      	ldr	r1, [pc, #128]	; (c4c <steinhart_hart_equation+0x8c>)
